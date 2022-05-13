@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace HashTables
 {
-        public class Node<K, V>
+        public class mymapNode<K, V>
         {
             public readonly int size;
             private readonly LinkedList<keyValues<K, V>>[] items;
-            public Node(int size)
+            public mymapNode(int size)
             {
                 this.size = size;
                 this.items = new LinkedList<keyValues<K, V>>[size];
 
             }
-            protected int GetArrayPosition(K key)
+            public int GetArrayPosition(K key)
             {
                 int position = key.GetHashCode() % size;
                 return Math.Abs(position);
@@ -44,25 +44,7 @@ namespace HashTables
                 keyValues<K, V> item = new keyValues<K, V>() { key = key, Value = value };
                 linkedlist.AddLast(item);
             }
-            public void Remove(K key)
-            {
-                int position = GetArrayPosition(key);
-                LinkedList<keyValues<K, V>> linkedlist = GetLinkedlist(position);
-                bool itemFound = false;
-                keyValues<K, V> founditem = default(keyValues<K, V>);
-                foreach (keyValues<K, V> item in linkedlist)
-                {
-                    if (item.key.Equals(key))
-                    {
-                        itemFound = true;
-                        founditem = item;
-                    }
-                }
-                if (itemFound)
-                {
-                    linkedlist.Remove(founditem);
-                }
-            }
+       
             public LinkedList<keyValues<K, V>> GetLinkedlist(int position)
             {
                 LinkedList<keyValues<K, V>> linkedlist = items[position];
@@ -73,7 +55,8 @@ namespace HashTables
                 }
                 return linkedlist;
             }
-        }
+    
+    }
         public struct keyValues<K, V>
         {
             public K key { get; set; }
