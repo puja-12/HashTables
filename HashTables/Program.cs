@@ -40,9 +40,8 @@ namespace HashTables
 
                         Console.WriteLine(testing.Substring(testing.IndexOf("because")));
                                           
-                           Console.WriteLine("Occurrence:" + hash3.CheckOccurrences(testing, "because"));
+                        Console.WriteLine("Occurrence:" + hash3.CheckOccurrences(testing, "because"));
                         
-
                         break;
 
                 }

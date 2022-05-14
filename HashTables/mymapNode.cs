@@ -56,16 +56,7 @@ namespace HashTables
             }
             return linkedlist;
         }
-        public void para()
-        {
-
-            String testing = "Paranoids are not paranoid  because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable  situations";
-         
-            Console.Write(testing.IndexOf("because") + Environment.NewLine);
-
-            Console.WriteLine(testing.Substring(testing.IndexOf("because")));
-
-        }
+  
      
             public  int  CheckOccurrences(string str1, string pattern)
             {
