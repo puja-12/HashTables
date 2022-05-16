@@ -16,27 +16,27 @@ namespace HashTables
             this.items = new LinkedList<keyValues<K, V>>[size];
 
         }
-         public int GetArrayPosition(K key)
-         {
-             int position = key.GetHashCode() % size;
-             return Math.Abs(position);
-         }
-         public V Get(K key)
-         {
-             int position = GetArrayPosition(key);
-             LinkedList<keyValues<K, V>> linkedlist = GetLinkedlist(position);
-             foreach (keyValues<K, V> item in linkedlist)
-             {
-                 if (item.key.Equals(key))
-                 {
-                     return item.Value;
+        public int GetArrayPosition(K key)
+        {
+            int position = key.GetHashCode() % size;
+            return Math.Abs(position);
+        }
+        public V Get(K key)
+        {
+            int position = GetArrayPosition(key);
+            LinkedList<keyValues<K, V>> linkedlist = GetLinkedlist(position);
+            foreach (keyValues<K, V> item in linkedlist)
+            {
+                if (item.key.Equals(key))
+                {
+                    return item.Value;
 
-                 }
-             }
-             return default(V);
+                }
+            }
+            return default(V);
 
 
-         }
+        }
         public void Add(K key, V value)
         {
 
@@ -56,21 +56,25 @@ namespace HashTables
             }
             return linkedlist;
         }
-  
-     
-            public  int  CheckOccurrences(string str1, string pattern)
-            {
-                int count = 0;
-                int a = 0;
-                while ((a = str1.IndexOf(pattern, a)) != -1)
-                {
-                    a += pattern.Length;
-                    count++;
-                }
-                return count;
-            }
 
-            public struct keyValues<K, V>
+
+        public void Display()
+        {
+            foreach (var linkedList in items)
+            {
+                if (linkedList != null)
+                {
+                    foreach (keyValues<K, V> keyvalue in linkedList)
+                    {
+                        Console.WriteLine(keyvalue.key + " --> " + keyvalue.Value);
+                    }
+                }
+            }
+        }
+
+
+
+        public struct keyValues<K, V>
         {
             public K key { get; set; }
             public V Value { get; set; }

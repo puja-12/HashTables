@@ -33,17 +33,32 @@ namespace HashTables
                         Console.WriteLine("2nd  index value: " + hash2);
                         break;
                     case 2:
-                        mymapNode<string, string> hash3 = new mymapNode<string, string>(5);
-                        String testing = "Paranoids are not paranoid  because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable  situations";
+                        mymapNode<string, int> hash3 = new mymapNode<string, int>(5);
 
-                        Console.Write(testing.IndexOf("because") + Environment.NewLine);
-
-                        Console.WriteLine(testing.Substring(testing.IndexOf("because")));
-                                          
-                        Console.WriteLine("Occurrence:" + hash3.CheckOccurrences(testing, "because"));
-                        
+                        string Word = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+                        string[] array2 = Word.Split(' ');
+                        LinkedList<string> checkForDuplication2 = new LinkedList<string>();
+                        foreach (string element in array2)
+                        {
+                            int count = 0;
+                            foreach (string match in array2)
+                            {
+                                if (element == match)
+                                {
+                                    count++;
+                                    if (checkForDuplication2.Contains(element))
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!checkForDuplication2.Contains(element))
+                            {
+                                checkForDuplication2.AddLast(element);
+                                hash3.Add(element, count);
+                            }
+                        }
                         break;
-
                 }
 
             }
