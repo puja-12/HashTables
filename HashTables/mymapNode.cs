@@ -58,18 +58,6 @@ namespace HashTables
             return linkedlist;
         }
   
-     
-            public  int  CheckOccurrences(string str1, string pattern)
-            {
-                int count = 0;
-                int a = 0;
-                while ((a = str1.IndexOf(pattern, a)) != -1)
-                {
-                    a += pattern.Length;
-                    count++;
-                }
-                return count;
-            }
         public void Remove(K key)
         {
             int position = GetArrayPosition(key);
