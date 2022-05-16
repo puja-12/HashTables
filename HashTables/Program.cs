@@ -58,6 +58,7 @@ namespace HashTables
                                 hash3.Add(element, count);
                             }
                         }
+                        hash3.Display();
                         break;
                 }
 
