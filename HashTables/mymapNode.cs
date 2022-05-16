@@ -9,6 +9,7 @@ namespace HashTables
     public class mymapNode<K, V>
     {
         public readonly int size;
+        public int Count { get; set; }
         private readonly LinkedList<keyValues<K, V>>[] items;
         public mymapNode(int size)
         {
@@ -69,8 +70,41 @@ namespace HashTables
                 }
                 return count;
             }
+        public void Remove(K key)
+        {
+            int position = GetArrayPosition(key);
+            LinkedList<keyValues<K, V>> linkedlist = GetLinkedlist(position);
+            bool itemFound = false;
+            keyValues<K, V> founditem = default(keyValues<K, V>);
+            foreach (keyValues<K, V> item in linkedlist)
+            {
+                if (item.key.Equals(key))
+                {
+                    itemFound = true;
+                    founditem = item;
+                }
+            }
+            if (itemFound)
+            {
+                linkedlist.Remove(founditem);
+            }
+        }
+        public void Display()
+        {
+            foreach (var linkedList in items)
+            {
+                if (linkedList != null)
+                {
+                    foreach (keyValues<K, V> keyvalue in linkedList)
+                    {
+                        Console.WriteLine(keyvalue.key + " --> " + keyvalue.Value);
+                    }
+                }
+            }
+        }
+    
 
-            public struct keyValues<K, V>
+    public struct keyValues<K, V>
         {
             public K key { get; set; }
             public V Value { get; set; }

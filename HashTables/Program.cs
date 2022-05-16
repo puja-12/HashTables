@@ -12,7 +12,7 @@ namespace HashTables
         {
             while (true)
             {
-                Console.WriteLine("select no\n1)index value of words\n2)index value of paragraph\n");
+                Console.WriteLine("select no\n1)index value of words\n2)index value of paragraph\n3)remove");
 
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -39,15 +39,45 @@ namespace HashTables
                         Console.Write(testing.IndexOf("because") + Environment.NewLine);
 
                         Console.WriteLine(testing.Substring(testing.IndexOf("because")));
-                                          
+
                         Console.WriteLine("Occurrence:" + hash3.CheckOccurrences(testing, "because"));
-                        
                         break;
-
+                    case 3:
+                        mymapNode<string, int> hash4 = new mymapNode<string, int>(5);
+                        string Para = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+                        string[] arr = Para.Split(' ');
+                        LinkedList<string> checkForduplication = new LinkedList<string>();
+                        foreach (string element in arr)
+                        {
+                            int count = 0;
+                            foreach (string match in arr)
+                            {
+                                if (element == match)
+                                {
+                                    count++;
+                                    if (checkForduplication.Contains(element))
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!checkForduplication.Contains(element))
+                            {
+                                checkForduplication.AddLast(element);
+                                hash4.Add(element, count);
+                            }
+                        }
+                        hash4.Display();
+                        Console.WriteLine("Please enter the word u want to remove :");
+                        string WordToRemove = Console.ReadLine();
+                        hash4.Remove(WordToRemove);
+                        hash4.Display();
+                        break;
                 }
-
             }
+
         }
+
     }
 }
 
